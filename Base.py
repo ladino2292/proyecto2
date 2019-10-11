@@ -10,7 +10,7 @@ NEGRO = [0,0,0]
 
 ANCHO = 600
 ALTO = 400
-
+#esta madre funciona ahí suave
 class Jugador(pygame.sprite.Sprite):
     def __init__(self,color):
         #Constructor
