@@ -10,7 +10,7 @@ NEGRO = [0,0,0]
 
 ANCHO = 600
 ALTO = 400
-#esta madre funciona ahí suave
+
 class Jugador(pygame.sprite.Sprite):
     def __init__(self,color):
         #Constructor
@@ -22,6 +22,7 @@ class Jugador(pygame.sprite.Sprite):
         self.rect.y=400
         self.velx=0
         self.vely=0
+        self.vidas=3
     #Retorna la posicion del jugador
     def pos(self):
         p=[self.rect.x,self.rect.y]
@@ -88,6 +89,7 @@ class Proyectil(pygame.sprite.Sprite):
 if __name__ == '__main__':
     pygame.init()
     #Declaracion de variables
+    fuente=pygame.font.Font(None,32)
     pantalla = pygame.display.set_mode([ANCHO,ALTO])
     reloj = pygame.time.Clock()
     jugadores=pygame.sprite.Group()
@@ -162,6 +164,11 @@ if __name__ == '__main__':
 
         #Marcador jugador 1
         for e in ls1:
+            vidas=j.vidas
+            vidas-=1
+            j=Jugador
+            j.vidas=vidas
+            juga.add.remove(b)
             print ('Marcador jugador 1: ')
             print (marcador1)
             marcador1=marcador1+1
@@ -211,7 +218,11 @@ if __name__ == '__main__':
         rivales.update()
         balasRival.update()
 
+        texto="vidas"+str(j.vidas)
+        info=fuente.render(texto,True,BLANCO)
+
         pantalla.fill(NEGRO)
+        pantala.blit(info,[50,50])
         #Dibujar objetos
         jugadores.draw(pantalla)
         rivales.draw(pantalla)
