@@ -117,8 +117,10 @@ if __name__ == '__main__':
         rivales.add(r)
 
     #ciclo para la ventana
+    texto='fin de juego'
     fin = False
-    while not fin:
+    fin_juego=False
+    while (not fin) and (not fin_juego):
         #Gestion de eventos
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -210,7 +212,8 @@ if __name__ == '__main__':
                 balasRival.remove(b)
 
         #Gestion de control
-
+        if vidas < 0:
+            fin_juego=True
         #Gestion de pantalla
         #Actualizar objetos
         balas.update()
@@ -222,7 +225,7 @@ if __name__ == '__main__':
         info=fuente.render(texto,True,BLANCO)
 
         pantalla.fill(NEGRO)
-        pantala.blit(info,[50,50])
+        pantalla.blit(info,[50,50])
         #Dibujar objetos
         jugadores.draw(pantalla)
         rivales.draw(pantalla)
@@ -231,3 +234,10 @@ if __name__ == '__main__':
 
         pygame.display.flip()
         reloj.tick(60)
+
+    pantalla.fill(NEGRO)
+    pantalla.blit(info,[200,200])
+    while not fin:
+        for event in pygame.event.get():
+            if event.type==pygame.QUIT:
+                fin=True
